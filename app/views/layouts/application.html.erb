@@ -2,13 +2,28 @@
 <html>
   <head>
     <title>Fakebook</title>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <%= yield %>
+    <%= render 'partials/navbar' %>
+    <% unless notice.blank? %>
+      <div class="alert alert-info alert-dismissable alert-fixed">
+        <%= notice %>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      </div>
+      <% end %>
+      <% unless alert.blank? %>
+        <div type="button" class="close" data-dismiss="alert">
+          <%= alert %>
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&time;</button>
+        </div>
+      <% end %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
   </body>
 </html>
+
