@@ -29,11 +29,16 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'devise'
-gem 'carrierwave'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-gem 'public_activity'
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+# Used to implement at.js for auto complete mentions/emojis
+gem 'jquery-atwho-rails'
+# Use twitter bootstrap sass
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'font-awesome-rails'
+
+gem 'letter_opener'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,6 +46,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'sqlite3'
 end
 
 group :development do
@@ -50,7 +56,32 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'better_errors'
 end
+
+group :production do
+  gem 'pg'
+  gem 'unicorn'
+  gem 'cloudinary'
+  gem 'rails_12factor'
+end
+
+gem 'devise'
+gem 'carrierwave'
+gem 'friendly_id', '~> 5.0.0'
+
+gem 'will_paginate', '~> 3.0.6'
+gem 'public_activity'
+
+# gem 'acts_as_votable', '~> 0.10.0'
+# gem 'acts_as_commentable'
+# gem 'acts_as_follower'
+# gem 'counter_culture', '~> 0.1.33'
+
+# gem 'faker'
+# gem 'populator'
+# gem 'auto_html', '~>1.6.4'
+# gem 'sanitize'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
