@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   # # GET /posts
   # # GET /posts.json
   # def index
@@ -9,12 +9,10 @@ class PostsController < ApplicationController
   #   respond_with(@posts)
   # end
 
-  respond_with :html
-
   # GET /posts/1
   # GET /posts/1.json
   def show
-    respond_with(@post)
+    @comments = @post.comments.all
   end
 
   # # GET /posts/new
@@ -24,8 +22,6 @@ class PostsController < ApplicationController
   # end
 
   # # GET /posts/1/edit
-  # def edit
-  # end
 
   # POST /posts
   # POST /posts.json
@@ -37,21 +33,25 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path
     else
-      redicted_to root_path, notice: @post.errors.full_messages.first
+      redirect_to root_path, notice: @post.errors.full_messages.first
     end
   end
-  # PATCH/PUT /posts/1
-  # PATCH/PUT /posts/1.json
+
+  def edit
+  end
+
   def update
     @post.update(post_params)
-    respond_with(@post)
+    respond_to @post
   end
 
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
     @post.destroy
-    respond_with(@post)
+    respond_to do |format|
+      format.js
+      format.html { redirect_to root_path }
     end
   end
 
